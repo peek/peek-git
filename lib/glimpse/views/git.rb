@@ -18,6 +18,10 @@ module Glimpse
         @sha = options.delete(:sha)
       end
 
+      def nwo?
+        !!@nwo
+      end
+
       # Fetch the current branch name.
       def branch_name
         @branch_name ||= `git rev-parse --abbrev-ref HEAD`.chomp
@@ -26,6 +30,10 @@ module Glimpse
       # Fetch the current sha if one isn't present.
       def sha
         @sha ||= `git rev-parse HEAD`.chomp
+      end
+
+      def short_sha
+        sha[0..6]
       end
 
       def compare_url
