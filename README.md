@@ -47,6 +47,20 @@ You can also manually set each of the following optional options:
 Glimpse.into Glimpse::Views::Git, :sha => '740f6b7b11b8717efaf51ddb98ce23394544f7e0', :default_branch => 'rails4.0', :branch_name => 'integration'
 ```
 
+## Using Glimpse::Git on Heroku
+
+If you try to deploy this to Heroku it won't actually work right away. Heroku
+removes the .git directory which doesn't allow us to fetch the HEAD ref or branch.
+
+To solve this, there is a custom buildpack that is forked from the default Ruby
+buildpack that will set `GIT_SHA` and `GIT_BRANCH` for you.
+
+To install this buildpack just run:
+
+```
+heroku config:set BUILDPACK_URL=https://github.com/dewski/heroku-buildpack-ruby.git --app appname
+```
+
 ## Contributing
 
 1. Fork it
