@@ -24,12 +24,12 @@ module Glimpse
 
       # Fetch the current branch name.
       def branch_name
-        @branch_name ||= `git rev-parse --abbrev-ref HEAD`.chomp
+        @branch_name ||= ENV['GIT_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.chomp
       end
 
       # Fetch the current sha if one isn't present.
       def sha
-        @sha ||= `git rev-parse HEAD`.chomp
+        @sha ||= ENV['GIT_SHA'] || `git rev-parse HEAD`.chomp
       end
 
       def short_sha
