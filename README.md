@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-Add the following to your `config/initializers/glimpse.rb`: 
+Add the following to your `config/initializers/glimpse.rb`:
 
 ```ruby
 Glimpse.into Glimpse::Views::Git
@@ -49,17 +49,12 @@ Glimpse.into Glimpse::Views::Git, :sha => '740f6b7b11b8717efaf51ddb98ce23394544f
 
 ## Using Glimpse::Git on Heroku
 
-If you try to deploy this to Heroku it won't actually work right away. Heroku
-removes the .git directory which doesn't allow us to fetch the HEAD ref or branch.
+Unfortunately Heroku [removes](https://devcenter.heroku.com/articles/slug-compiler#compilation)
+the .git directory during slug compilation which doesn't make it possible to
+view the current deployed SHA or branch.
 
-To solve this, there is a custom buildpack that is forked from the default Ruby
-buildpack that will set `GIT_SHA` and `GIT_BRANCH` for you.
-
-To install this buildpack just run:
-
-```
-heroku config:set BUILDPACK_URL=https://github.com/dewski/heroku-buildpack-ruby.git --app appname
-```
+The one workaround is to set the GIT_SHA and GIT_BRANCH ENV variables within
+your deploy process.
 
 ## Contributing
 
