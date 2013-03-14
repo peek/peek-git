@@ -42,9 +42,11 @@ You can also manually set each of the following optional options:
 - SHA
 - Default Branch (master by default)
 - Branch Name
+- Domain Name (github.com by default)
+- Protocol (https by default)
 
 ```ruby
-Glimpse.into Glimpse::Views::Git, :sha => '740f6b7b11b8717efaf51ddb98ce23394544f7e0', :default_branch => 'rails4.0', :branch_name => 'integration'
+Glimpse.into Glimpse::Views::Git, :sha => '740f6b7b11b8717efaf51ddb98ce23394544f7e0', :default_branch => 'rails4.0', :branch_name => 'integration', :domain => 'git.example.com', :protocol => 'http'
 ```
 
 ## Using Glimpse::Git on Heroku
