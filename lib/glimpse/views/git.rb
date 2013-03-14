@@ -3,12 +3,14 @@ module Glimpse
     class Git < View
       # A view to get some insight into the current state of git
       # for your project. It gives you the sha, branch, and compare
-      # url on GitHub.
+      # url.
       #
-      # nwo             - The GitHub repository (name with owner).
+      # nwo             - The repository (name with owner).
       # default_branch  - master may not be your default branch.
       # branch_name     - The current branch name (Optional).
       # sha             - The current SHA for git (Optional).
+      # domain          - Domain name of the location of the repository (Default: github.com).
+      # protocol        - The protocol to use in the compare_url (Default: https).
       #
       # Returns Glimpse::Views::Git
       def initialize(options = {})
@@ -16,6 +18,8 @@ module Glimpse
         @default_branch = options.fetch(:default_branch, 'master')
         @branch_name = options.delete(:branch_name)
         @sha = options.delete(:sha)
+        @domain = options.fetch(:domain, 'github.com')
+        @protocol = options.fetch(:protocol, 'https')
       end
 
       def nwo?
@@ -37,7 +41,7 @@ module Glimpse
       end
 
       def compare_url
-        "https://github.com/#{@nwo}/compare/#{@default_branch}...#{sha}"
+        "#{@protocol}://#{@domain}/#{@nwo}/compare/#{@default_branch}...#{sha}"
       end
     end
   end
