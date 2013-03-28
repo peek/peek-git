@@ -1,8 +1,8 @@
-# Glimpse::Git
+# Peek::Git
 
-Provide a glimpse into the Git info of your Rails application.
+Take a peek into the Git info of your Rails application.
 
-Things this glimpse view provides:
+Things this peek view provides:
 
 - View the current branch name
 - Compare the diff of the current revision on your GitHub repo
@@ -11,7 +11,7 @@ Things this glimpse view provides:
 
 Add this line to your application's Gemfile:
 
-    gem 'glimpse-git'
+    gem 'peek-git'
 
 And then execute:
 
@@ -19,14 +19,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install glimpse-git
+    $ gem install peek-git
 
 ## Usage
 
-Add the following to your `config/initializers/glimpse.rb`:
+Add the following to your `config/initializers/peek.rb`:
 
 ```ruby
-Glimpse.into Glimpse::Views::Git
+Peek.into Peek::Views::Git
 ```
 
 You will need to set the GitHub project's name with owner if you plan on
@@ -34,7 +34,7 @@ comparing the current ref against your default branch on GitHub.
 
 ```ruby
 # nwo - name with owner - owner/name
-Glimpse.into Glimpse::Views::Git, :nwo => 'dewski/json_builder'
+Peek.into Peek::Views::Git, :nwo => 'dewski/json_builder'
 ```
 
 You can also manually set each of the following optional options:
@@ -46,10 +46,15 @@ You can also manually set each of the following optional options:
 - Protocol (https by default)
 
 ```ruby
-Glimpse.into Glimpse::Views::Git, :sha => '740f6b7b11b8717efaf51ddb98ce23394544f7e0', :default_branch => 'rails4.0', :branch_name => 'integration', :domain => 'git.example.com', :protocol => 'http'
+Peek.into Peek::Views::Git, \
+  :sha => '740f6b7b11b8717efaf51ddb98ce23394544f7e0',
+  :default_branch => 'rails4.0',
+  :branch_name => 'integration',
+  :domain => 'github.com',
+  :protocol => 'https'
 ```
 
-## Using Glimpse::Git on Heroku
+## Using Peek::Git on Heroku
 
 Unfortunately Heroku [removes](https://devcenter.heroku.com/articles/slug-compiler#compilation)
 the .git directory during slug compilation which doesn't make it possible to

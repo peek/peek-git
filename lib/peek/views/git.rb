@@ -1,4 +1,4 @@
-module Glimpse
+module Peek
   module Views
     class Git < View
       # A view to get some insight into the current state of git
@@ -12,7 +12,7 @@ module Glimpse
       # domain          - Domain name of the location of the repository (Default: github.com).
       # protocol        - The protocol to use in the compare_url (Default: https).
       #
-      # Returns Glimpse::Views::Git
+      # Returns Peek::Views::Git
       def initialize(options = {})
         @nwo = options.delete(:nwo)
         @default_branch = options.fetch(:default_branch, 'master')
