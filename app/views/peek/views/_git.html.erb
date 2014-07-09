@@ -1,6 +1,6 @@
 <div class="bucket">
   <%= view.branch_name %>
-  <span class="hidden">
+  <span<%= ' class="hidden"'.html_safe if view.default_branch? %>>
     <% if view.nwo? %>
       <a href="<%= view.compare_url %>" target="_blank"><%= view.short_sha %></a>
     <% else %>

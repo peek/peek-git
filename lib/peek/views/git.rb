@@ -43,6 +43,10 @@ module Peek
       def compare_url
         "#{@protocol}://#{@domain}/#{@nwo}/compare/#{@default_branch}...#{sha}"
       end
+
+      def default_branch?
+        @default_branch == branch_name
+      end
     end
   end
 end
