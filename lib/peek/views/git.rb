@@ -26,14 +26,16 @@ module Peek
         !!@nwo
       end
 
-      # Fetch the current branch name.
+      # Fetch the current branch name or heroku release version.
       def branch_name
-        @branch_name ||= ENV['GIT_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.chomp
+        @branch_name ||= ENV['GIT_BRANCH'] || ENV['HEROKU_RELEASE_VERSION']
+        @branch_name ||= `git rev-parse --abbrev-ref HEAD`.chomp
       end
 
       # Fetch the current sha if one isn't present.
       def sha
-        @sha ||= ENV['GIT_SHA'] || `git rev-parse HEAD`.chomp
+        @sha ||= ENV['HEROKU_SLUG_COMMIT'] || ENV['GIT_SHA']
+        @sha ||= `git rev-parse HEAD`.chomp
       end
 
       def short_sha
