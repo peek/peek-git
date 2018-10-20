@@ -60,8 +60,14 @@ Unfortunately Heroku [removes](https://devcenter.heroku.com/articles/slug-compil
 the .git directory during slug compilation which doesn't make it possible to
 view the current deployed SHA or branch.
 
-The one workaround is to set the GIT_SHA and GIT_BRANCH ENV variables within
+One workaround is to set the GIT_SHA and GIT_BRANCH ENV variables within
 your deploy process.
+
+An alternative workaround is to use the runtime dyno metadata lab flag:
+
+    $ heroku labs:enable runtime-dyno-metadata -a <app name>
+
+Then, Peek can display the current Heroku release and sha.
 
 ## Contributing
 
